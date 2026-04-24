@@ -1,0 +1,4 @@
+*.unityweb binary
+*.data.unityweb binary
+*.wasm.unityweb binary
+*.js.unityweb binary
