@@ -6,24 +6,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Ragdoll Hit - Poki GitHub Edition</title>
     <script>
-    // --- 💀 EL HACK DE LAS CALAVERITAS ---
-    // Definimos esto ANTES que el master-loader para que siempre diga "SÍ" al premio
+    // --- 💀 HACK DE RECOMPENSAS ---
     window.PokiSDK = {
         init: function() { return Promise.resolve(); },
         gameLoadingStart: function() {},
         gameLoadingFinished: function() {},
         rewardedBreak: function() { 
-            return new Promise((resolve) => {
-                console.log("Bug: Recompensa activada sin anuncios");
-                resolve(true); 
-            });
+            return new Promise((resolve) => { resolve(true); }); 
         },
         ads: {
             requestAd: function(c) {
                 if(c && c.adStarted) c.adStarted();
                 setTimeout(() => {
                     if(c && c.adFinished) c.adFinished();
-                    if(c && c.rewardAllowed) c.rewardAllowed(true); // Esto quita el rewardAllowed: false
+                    if(c && c.rewardAllowed) c.rewardAllowed(true); 
                 }, 50);
             }
         }
@@ -36,11 +32,8 @@
         maxRatio: 24 / 9,
         minRatio: 9 / 24,
         title: 'Ragdoll Hit',
-        thumbnail: 'https:\/\/img.poki.com\/3c892779be9dabb3589586c83ad3eeed.png',
-        numScreenshots: 4,
         unityVersion: '2022.3.6f1',
-        // --- Importante para GitHub Pages ---
-        unityWebglBuildUrl: './', 
+        unityWebglBuildUrl: './', // Fuerza a buscar en la raíz de tu GitHub
 
         fileSize: 9,
         cachedDecompressedFileSizes: {
@@ -55,21 +48,10 @@
             "code_filename": "f23c0f3f40a28f1adce731399dde22aa.wasm.unityweb",
             "company_name": "Ericetto",
             "data_filename": "959bf1c60308f1c34bf072f43c3c17d4.data.unityweb",
-            "decompression_fallback": "Brotli",
-            "development_player": "false",
             "framework_filename": "3276aa7c11496bcc48eb6908f112f0c3.js.unityweb",
-            "height": "600",
-            "loader_filename": "v84.loader.js",
+            "loader_filename": "v84.loader.js", // ASEGÚRATE QUE EL ARCHIVO SE LLAME ASÍ EN MINÚSCULAS
             "product_name": "Ragdoll Hit",
-            "product_version": "0.1",
-            "splash_screen_style": "Dark",
-            "unity_version": "2022.3.6f1",
-            "use_data_caching": "true",
-            "use_threads": "false",
-            "use_wasm": "true",
-            "use_webgl_1_0": "true",
-            "use_webgl_2_0": "true",
-            "width": "960"
+            "product_version": "0.1"
         }
     };
     </script>
