@@ -4,20 +4,43 @@
     <meta name="robots" content="noindex,nofollow" />
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Ragdoll Hit - Poki</title>
+    <title>Ragdoll Hit - Poki GitHub Edition</title>
     <script>
+    // --- 💀 EL HACK DE LAS CALAVERITAS ---
+    // Definimos esto ANTES que el master-loader para que siempre diga "SÍ" al premio
+    window.PokiSDK = {
+        init: function() { return Promise.resolve(); },
+        gameLoadingStart: function() {},
+        gameLoadingFinished: function() {},
+        rewardedBreak: function() { 
+            return new Promise((resolve) => {
+                console.log("Bug: Recompensa activada sin anuncios");
+                resolve(true); 
+            });
+        },
+        ads: {
+            requestAd: function(c) {
+                if(c && c.adStarted) c.adStarted();
+                setTimeout(() => {
+                    if(c && c.adFinished) c.adFinished();
+                    if(c && c.rewardAllowed) c.rewardAllowed(true); // Esto quita el rewardAllowed: false
+                }, 50);
+            }
+        }
+    };
+    window.initPokiBridge = function() { return Promise.resolve(); };
+
     window.config = {
         loader: 'unity-2020',
         debug: false,
         maxRatio: 24 / 9,
         minRatio: 9 / 24,
-
         title: 'Ragdoll Hit',
         thumbnail: 'https:\/\/img.poki.com\/3c892779be9dabb3589586c83ad3eeed.png',
         numScreenshots: 4,
-
         unityVersion: '2022.3.6f1',
-        unityWebglBuildUrl: '', 
+        // --- Importante para GitHub Pages ---
+        unityWebglBuildUrl: './', 
 
         fileSize: 9,
         cachedDecompressedFileSizes: {
